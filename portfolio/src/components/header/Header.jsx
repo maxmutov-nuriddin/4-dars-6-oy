@@ -29,7 +29,7 @@ const Header = () => {
       <div className="">
         <nav className="header__nav">
           <NavLink to='/' className="header__logo">
-            <img src="../../../public/Logo.svg" alt="logo" />
+            <img src="./Logo.svg" alt="logo" />
           </NavLink>
           <ul className={`header__menu ${burger ? 'open' : 'close'}`}>
             {
@@ -58,7 +58,7 @@ const Header = () => {
               </ul>
             </li>
           </ul>
-          <button className="burger__btn" onClick={open}><img className="burger__btn-img" src="./png/pngwing.com (2).png" alt="burger btn" /></button>
+          <button className="burger__btn" onClick={open}><img className="burger__btn-img" src="./png/pngwing.com (3).png" alt="burger btn" /></button>
         </nav>
       </div>
     </header>
