@@ -58,7 +58,7 @@ const Header = () => {
               </ul>
             </li>
           </ul>
-          <button className="burger__btn" onClick={open}><img className="burger__btn-img" src="./png/pngwing.com (3).png" alt="burger btn" /></button>
+          <button className="burger__btn" onClick={open}><img className="burger__btn-img" src="./pngwing.com (3).png" alt="burger btn" /></button>
         </nav>
       </div>
     </header>
