@@ -15,6 +15,7 @@ import SkillsPage from "./pages/admin/SkillsPage";
 import { AuthContext } from "./context/AuthContext";
 
 import './App.css'
+import PortfoliosPage from "./pages/admin/PortfoliosPage";
 
 function App() {
   const { isAuthenticated } = useContext(AuthContext);
@@ -24,13 +25,14 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<FrontLayout />}>
-          <Route index element={<HomePage />} /> 
-          <Route path="/login" element={<LoginPage />} /> 
+          <Route index element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
         </Route>
         <Route path="*" element={<NoutFound />} />
         {isAuthenticated ? (
           <Route path="/" element={<AdminLayout />}>
             <Route path="dashboard" element={<DashboardPage />} />
+            <Route path="portfolio" element={<PortfoliosPage />} />
             <Route path="skills" element={<SkillsPage />} />
           </Route>
         ) : null}

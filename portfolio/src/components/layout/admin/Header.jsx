@@ -26,6 +26,9 @@ const Headers = () => {
               <NavLink to='/dashboard' className="header__menu-link">Admin</NavLink>
             </li>
             <li className="header__menu-item">
+              <NavLink to='/portfolio' className="header__menu-link">Portfolio</NavLink>
+            </li>
+            <li className="header__menu-item">
               <NavLink to='/skills' className="header__menu-link">Skills</NavLink>
             </li>
             <li className="header__menu-item">
