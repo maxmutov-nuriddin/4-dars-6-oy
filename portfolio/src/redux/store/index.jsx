@@ -6,14 +6,21 @@ import portfolioReducer, {
   portfolioService,
 } from "../services/portfolioService";
 
+import userReducer, {
+  userService,
+} from "../services/userService";
+
 const reducer = {
+  [userService.reducerPath]: userReducer,
   [portfolioService.reducerPath]: portfolioReducer,
 };
 
 export const Store = configureStore({
   reducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(portfolioService.middleware),
+    getDefaultMiddleware()
+      .concat(portfolioService.middleware)
+      .concat(userService.middleware),
 });
 
 const StoreProvider = ({ children }) => {

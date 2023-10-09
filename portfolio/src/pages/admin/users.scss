@@ -1,0 +1,92 @@
+.user {
+  margin-top: 20px;
+  color: #96BEF4;
+}
+
+.user__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user__title {
+  color: #fff;
+}
+
+.user__title-count {
+  color: #96BEF4;
+  text-decoration: underline;
+}
+
+.user__button {
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  font-size: 20px;
+}
+
+.user__button:hover {
+  color: #96BEF4;
+}
+
+.user__button:active {
+  color: #96BEF4;
+}
+
+th,
+td {
+  color: #fff;
+}
+
+.user__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+tr,
+.portfolio__table-header,
+.user__name,
+.user__description,
+.user__actions,
+.user__table-header {
+  text-align: center;
+  border: 1px solid #232536;
+  padding: 10px;
+}
+
+.user__button--add {
+  color: #2075e4;
+}
+
+.user__button--edit {
+  color: rgb(201, 255, 119);
+}
+
+.user__button--delete {
+  color: rgb(253, 87, 87);
+}
+
+
+.user__table-wrapper {
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+.user__pagination {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.user__pagination-button {
+  color: #2075e4;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
