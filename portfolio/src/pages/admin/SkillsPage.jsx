@@ -1,17 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import request from '../../server/Server';
+import { Form, Input, Modal } from "antd";
+
 
 import '../../App.css';
 import './skills.scss'
 
 const SkillsPage = () => {
+  const [form] = Form.useForm();
+
   const [data, setData] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [selected, setSelected] = useState(null);
-  const [name, setName] = useState('');
-  const [percent, setPercent] = useState('');
-  const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState()
@@ -46,8 +47,7 @@ const SkillsPage = () => {
       setShowForm(true);
       let { data } = await request.get(`skills/${id}`);
       setIsLoading(false);
-      setName(data.name);
-      setPercent(data.percent);
+      form.setFieldsValue(data);
     } catch (err) {
       console.log(err);
       setIsLoading(false);
@@ -74,45 +74,19 @@ const SkillsPage = () => {
   const handleAddClick = () => {
     setSelected(null);
     setShowForm(true);
-    setName('');
-    setPercent('');
-    setErrors({});
   };
 
-  const close = () => {
+  const closeModal = () => {
     setShowForm(false);
-    setErrors({});
-  };
-
-  const validateForm = () => {
-    let formErrors = {};
-
-    if (!name.trim()) {
-      formErrors.name = "Name is required";
-    }
-
-    if (!percent.trim()) {
-      formErrors.percent = "Percent is required";
-    }
-
-    setErrors(formErrors);
-
-    return Object.keys(formErrors).length === 0;
   };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validateForm()) {
-      return;
-    }
-
     try {
+      
       setIsLoading(true)
-      const formData = {
-        name,
-        percent,
-      };
+      let formData = await form.validateFields();
       console.log(formData);
       if (selected === null) {
         await request.post("skills", formData);
@@ -124,9 +98,6 @@ const SkillsPage = () => {
       }
       getData();
       setShowForm(false);
-      setName('');
-      setPercent('');
-      setErrors({});
     } catch (err) {
       console.log(err);
     }
@@ -189,42 +160,53 @@ const SkillsPage = () => {
           </table>
         </div>
       </div>
-      {showForm && (
-        <div className="form__form-wrapper">
-          <form className="form__form" onSubmit={handleFormSubmit}>
-            <h3 className="form__form-title">{selected === null ? 'Add Skills' : 'Edit Skills'}</h3>
-            <div className="form__form-group">
-              <label className="form__form-label" htmlFor="name">Name</label>
-              <input
-                className="form__form-input"
-                type="text"
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-              {errors.name && <span className="form__form-error">{errors.name}</span>}
-            </div>
-            <div className="form__form-group">
-              <label className="form__form-label" htmlFor="description">Percent</label>
-              <input
-                className="form__form-textarea"
-                id="description"
-                value={percent}
-                onChange={(e) => setPercent(e.target.value)}
-              />
-              {errors.percent && <span className="form__form-error">{errors.percent}</span>}
-            </div>
-            <div className="form__form-buttons">
-              <button type="submit" className="form__button form__button--submit">
-                Save
-              </button>
-              <button className="form__button form__button--cancel" onClick={close}>
-                Cancel
-              </button>
-            </div>
-          </form>
-        </div>
-      )}
+      <Modal
+        title="Category data"
+        open={showForm}
+        onOk={handleFormSubmit}
+        onCancel={closeModal}
+        okText={selected ? "Save skill" : "Add skill"}
+      >
+        <Form
+          form={form}
+          name="skill"
+          labelCol={{
+            span: 24,
+          }}
+          wrapperCol={{
+            span: 24,
+          }}
+          style={{
+            maxWidth: 600,
+          }}
+          autoComplete="off"
+        >
+          <Form.Item
+            label="Skill name"
+            name="name"
+            rules={[
+              {
+                required: true,
+                message: "Please fill !",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Percent"
+            name="percent"
+            rules={[
+              {
+                required: true,
+                message: "Please fill!",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+        </Form>
+      </Modal>
       {totalPages > 1 && (
         <div className="skills__pagination">
           <button
