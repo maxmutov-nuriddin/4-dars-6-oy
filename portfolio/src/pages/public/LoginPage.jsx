@@ -57,7 +57,7 @@ const LoginPage = () => {
           navigate("/");
           setIsLoading(false)
         } else if (role === "admin") {
-          navigate("/dashboard");
+          navigate("/dashboards");
           setIsLoading(false)
         }
         setIsAuthenticated(true);

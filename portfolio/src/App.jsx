@@ -32,7 +32,7 @@ function App() {
         <Route path="*" element={<NoutFound />} />
         {isAuthenticated ? (
           <Route path="/" element={<AdminLayout />}>
-            <Route path="dashboard" element={<DashboardPage />} />
+            <Route path="dashboards" element={<DashboardPage />} />
             <Route path="portfolio" element={<PortfoliosPage />} />
             <Route path="skills" element={<SkillsPage />} />
             <Route path="users" element={<UsersPage />} />

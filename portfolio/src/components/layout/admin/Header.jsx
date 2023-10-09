@@ -23,7 +23,7 @@ const Headers = () => {
           </NavLink>
           <ul className={`header__menu ${burger ? 'open' : 'close'}`}>
             <li className="header__menu-item">
-              <NavLink to='/dashboard' className="header__menu-link">Admin</NavLink>
+              <NavLink to='/dashboards' className="header__menu-link">Admin</NavLink>
             </li>
             <li className="header__menu-item">
               <NavLink to='/portfolio' className="header__menu-link">Portfolio</NavLink>
