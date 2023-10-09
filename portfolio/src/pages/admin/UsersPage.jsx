@@ -40,6 +40,7 @@ const UsersPage = () => {
   const handleAddClick = () => {
     setSelected(null);
     setShowForm(true);
+    form.resetFields()
   };
 
 
@@ -76,12 +77,12 @@ const UsersPage = () => {
   }
 
   async function deleteUsers(id) {
+    console.log(id);
     const confirmDelete = window.confirm("Are you sure you want to delete?");
     if (confirmDelete) {
       await deleteUser(id);
       refetch();
     }
-
   }
 
 

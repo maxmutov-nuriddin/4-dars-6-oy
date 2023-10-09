@@ -7,7 +7,7 @@ export const userService = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${ENDPOINT}api/v1/`,
     prepareHeaders: (headers) => {
-      headers.set("Authorization", `Bears ${Cookies.get(TOKEN)}`);
+      headers.set("Authorization", `Bearer ${Cookies.get(TOKEN)}`);
       return headers;
     },
   }),

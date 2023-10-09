@@ -38,6 +38,7 @@ const PortfoliosPage = () => {
   const handleAddClick = () => {
     setSelected(null);
     setShowForm(true);
+    form.resetFields()
   };
 
 

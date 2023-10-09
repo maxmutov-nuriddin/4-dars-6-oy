@@ -74,6 +74,7 @@ const SkillsPage = () => {
   const handleAddClick = () => {
     setSelected(null);
     setShowForm(true);
+    form.resetFields()
   };
 
   const closeModal = () => {
