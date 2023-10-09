@@ -30,7 +30,6 @@ const UsersPage = () => {
   const [updateUser] = useUpdateUserMutation();
   const [deleteUser] = useDeleteUserMutation();
 
-  console.log(data);
 
   useEffect(() => {
     setItemsPerPage(data?.pagination.total)
