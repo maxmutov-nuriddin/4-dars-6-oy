@@ -205,6 +205,18 @@ const UsersPage = () => {
           >
             <Input />
           </Form.Item>
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: "Please fill!",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
         </Form>
       </Modal>
       {totalPages > 1 && (
