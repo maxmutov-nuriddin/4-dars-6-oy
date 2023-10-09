@@ -111,8 +111,8 @@ const PortfoliosPage = () => {
               <tr>
                 <th className="portfolio__table-header">Name</th>
                 <th className="portfolio__table-header">Url</th>
-                <th className="portfolio__table-header">Description</th>
-                <th className="portfolio__table-header">Action</th>
+                <th className="portfolio__table-header portfolio__table-header-speciale">Description</th>
+                <th className="portfolio__table-header portfolio__table-header-speciale">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -120,7 +120,7 @@ const PortfoliosPage = () => {
                 <tr key={portfolio._id} className="portfolio__row">
                   <td className="portfolio__name">{portfolio.name}</td>
                   <td className="portfolio__name">
-                    <a rel="noreferrer" target="_blank" href={portfolio.url}>{portfolio.url}</a>
+                    <a className='portfolio__link' rel="noreferrer" target="_blank" href={portfolio.url}>{portfolio.url}</a>
                   </td>
                   <td className="portfolio__description">{portfolio.description}</td>
                   <td className="portfolio__actions">
@@ -148,7 +148,7 @@ const PortfoliosPage = () => {
         open={showForm}
         onOk={handleOk}
         onCancel={closeModal}
-        okText={selected ? "Save portfolio" : "Add portfolio"}
+        okText={selected ? "Save" : "Add"}
       >
         <Form
           form={form}
@@ -203,17 +203,17 @@ const PortfoliosPage = () => {
         </Form>
       </Modal>
       {totalPages > 1 && (
-        <div className="skills__pagination">
+        <div className="portfolio__pagination">
           <button
-            className="skills__pagination-button"
+            className="portfolio__pagination-button"
             disabled={currentPage === 1}
             onClick={() => setCurrentPage(currentPage - 1)}
           >
             Previous
           </button>
-          <span className="skills__pagination-current">{currentPage}</span>
+          <span className="portfolio__pagination-current">{currentPage}</span>
           <button
-            className="skills__pagination-button"
+            className="portfolio__pagination-button"
             disabled={currentPage === totalPages}
             onClick={() => setCurrentPage(currentPage + 1)}
           >

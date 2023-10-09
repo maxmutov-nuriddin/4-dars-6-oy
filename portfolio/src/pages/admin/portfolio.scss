@@ -1,5 +1,5 @@
 .portfolio {
-  margin-top: 20px;
+  margin: 20px 0;
   color: #96BEF4;
 }
 
@@ -45,14 +45,36 @@ td {
 tr,
 td,
 .portfolio__table-header {
-  text-align: center;
+  text-align: start;
   border: 1px solid #232536;
-  padding: 5px;
+  padding: 15px;
+}
+
+.portfolio__link {
+  color: antiquewhite;
+}
+
+.portfolio__description,
+.portfolio__actions,
+.portfolio__table-header-speciale {
+  text-align: center;
 }
 
 .portfolio__table-wrapper {
   overflow-x: auto;
   margin-bottom: 20px;
+}
+
+.portfolio__button--add {
+  color: #2075e4;
+}
+
+.portfolio__button--edit {
+  color: rgb(201, 255, 119);
+}
+
+.portfolio__button--delete {
+  color: rgb(253, 87, 87);
 }
 
 .portfolio__pagination {
@@ -73,4 +95,3 @@ td,
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
 }
-

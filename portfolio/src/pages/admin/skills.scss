@@ -43,12 +43,27 @@ td {
 }
 
 tr,
-td,
+.skills__name,
+.skills__description,
+.skills__actions,
 .skills__table-header {
   text-align: center;
   border: 1px solid #232536;
-  padding: 5px;
+  padding: 10px;
 }
+
+.skills__button--add {
+  color: #2075e4;
+}
+
+.skills__button--edit {
+  color: rgb(201, 255, 119);
+}
+
+.skills__button--delete {
+  color: rgb(253, 87, 87);
+}
+
 
 .skills__table-wrapper {
   overflow-x: auto;
