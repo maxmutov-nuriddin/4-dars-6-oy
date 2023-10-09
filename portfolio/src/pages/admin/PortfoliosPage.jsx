@@ -144,6 +144,7 @@ const PortfoliosPage = () => {
         </div>
       </div>
       <Modal
+        className="transparent-modal"
         title="Category data"
         open={showForm}
         onOk={handleOk}
