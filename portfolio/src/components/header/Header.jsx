@@ -35,7 +35,7 @@ const Header = () => {
             {
               isAuthenticated && role === "admin" ? (
                 <li className="header__menu-item">
-                  <NavLink to='/dashboard' className="header__menu-link">Admin</NavLink>
+                  <NavLink to='/dashboards' className="header__menu-link">Admin</NavLink>
                 </li>
               ) : null
             }
