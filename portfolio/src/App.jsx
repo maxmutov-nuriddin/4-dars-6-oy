@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useContext } from "react";
 
 import HomePage from "./pages/front/HomePage";
@@ -26,7 +26,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Switch>
         <Routes>
           <Route path="/" element={<FrontLayout />}>
             <Route index element={<HomePage />} />
@@ -43,7 +42,6 @@ function App() {
             </Route>
           ) : null}
         </Routes>
-      </Switch>
     </BrowserRouter>
   )
 }
