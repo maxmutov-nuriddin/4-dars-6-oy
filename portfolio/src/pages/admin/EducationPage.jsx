@@ -4,17 +4,17 @@ import { Form, Input, Modal } from "antd";
 
 
 import {
-  useAddPortfolioMutation,
-  useDeletePortfolioMutation,
-  useGetPortfolioMutation,
-  useGetPortfoliosQuery,
-  useUpdatePortfolioMutation,
-} from "../../redux/services/portfolioService";
+  useGetEducationsQuery,
+  useGetEducationMutation,
+  useAddEducationMutation,
+  useUpdateEducationMutation,
+  useDeleteEducationMutation,
+} from "../../redux/services/educationServer";
 
 import '../../App.css';
-import './portfolio.scss'
+import './education.scss'
 
-const PortfoliosPage = () => {
+const EducationPage = () => {
   const [form] = Form.useForm();
 
   const [showForm, setShowForm] = useState(false);
@@ -23,12 +23,12 @@ const PortfoliosPage = () => {
   const [itemsPerPage, setItemsPerPage] = useState()
   const pageTotal = 10
 
-  const { data, refetch, isLoading } = useGetPortfoliosQuery(currentPage);
+  const { data, refetch, isLoading } = useGetEducationsQuery(currentPage);
 
-  const [getPortfolio] = useGetPortfolioMutation();
-  const [addPortfolio] = useAddPortfolioMutation();
-  const [updatePortfolio] = useUpdatePortfolioMutation();
-  const [deletePortfolio] = useDeletePortfolioMutation();
+  const [getEducation] = useGetEducationMutation();
+  const [addEducation] = useAddEducationMutation();
+  const [updateEducation] = useUpdateEducationMutation();
+  const [deleteEducation] = useDeleteEducationMutation();
 
   useEffect(() => {
     setItemsPerPage(data?.pagination.total)
@@ -51,9 +51,9 @@ const PortfoliosPage = () => {
       let values = await form.validateFields();
       values.photo = "6521485e1b06670014733226";
       if (selected === null) {
-        await addPortfolio(values);
+        await addEducation(values);
       } else {
-        await updatePortfolio({ id: selected, body: values });
+        await updateEducation({ id: selected, body: values });
       }
       closeModal();
       refetch();
@@ -62,10 +62,10 @@ const PortfoliosPage = () => {
     }
   };
 
-  async function editPortfolio(id) {
+  async function editEducation(id) {
     try {
       setSelected(id);
-      const { data } = await getPortfolio(id);
+      const { data } = await getEducation(id);
       form.setFieldsValue(data);
       setShowForm(true)
     } catch (err) {
@@ -73,14 +73,15 @@ const PortfoliosPage = () => {
     }
   }
 
-  async function deletePortfolios(id) {
+  async function deleteEducations(id) {
     const confirmDelete = window.confirm("Are you sure you want to delete?");
     if (confirmDelete) {
-      await deletePortfolio(id);
+      await deleteEducation(id);
       refetch();
     }
 
   }
+
 
   if (isLoading) {
     return <div className='loading'>
@@ -100,7 +101,7 @@ const PortfoliosPage = () => {
     <section className="portfolio">
       <div className="container">
         <div className="portfolio__header">
-          <h2 className="portfolio__title">Portfolio <span className='portfolio__title-count'>{itemsPerPage}</span></h2>
+          <h2 className="portfolio__title">Education <span className='portfolio__title-count'>{itemsPerPage}</span></h2>
           <button className="portfolio__button portfolio__button--add" onClick={handleAddClick}>
             Add
           </button>
@@ -110,7 +111,8 @@ const PortfoliosPage = () => {
             <thead>
               <tr>
                 <th className="portfolio__table-header">Name</th>
-                <th className="portfolio__table-header">Url</th>
+                <th className="portfolio__table-header">Start data</th>
+                <th className="portfolio__table-header">End data</th>
                 <th className="portfolio__table-header portfolio__table-header-speciale">Description</th>
                 <th className="portfolio__table-header portfolio__table-header-speciale">Action</th>
               </tr>
@@ -119,20 +121,26 @@ const PortfoliosPage = () => {
               {data.data?.map((portfolio) => (
                 <tr key={portfolio._id} className="portfolio__row">
                   <td className="portfolio__name">{portfolio.name}</td>
-                  <td className="portfolio__name">
-                    <a className='portfolio__link' rel="noreferrer" target="_blank" href={portfolio.url}>{portfolio.url}</a>
+                  <td className="portfolio__datas">
+                    {portfolio.startDate?.split('T')[0]}
+                  </td>
+                  <td className="portfolio__datas">
+                    {portfolio.endDate?.split('T')[0]}
+                  </td>
+                  <td className="portfolio__datas">
+                    {portfolio.level}
                   </td>
                   <td className="portfolio__description">{portfolio.description}</td>
                   <td className="portfolio__actions">
                     <button
                       className="portfolio__button portfolio__button--edit"
-                      onClick={() => editPortfolio(portfolio._id)}
+                      onClick={() => editEducation(portfolio._id)}
                     >
                       Edit
                     </button>
                     <button
                       className="portfolio__button portfolio__button--delete"
-                      onClick={() => deletePortfolios(portfolio._id)}
+                      onClick={() => deleteEducations(portfolio._id)}
                     >
                       Delete
                     </button>
@@ -145,7 +153,7 @@ const PortfoliosPage = () => {
       </div>
       <Modal
         className="transparent-modal"
-        title="Portfolio data"
+        title="Education data"
         open={showForm}
         onOk={handleOk}
         onCancel={closeModal}
@@ -166,7 +174,7 @@ const PortfoliosPage = () => {
           autoComplete="off"
         >
           <Form.Item
-            label="Portfolio name"
+            label="Education name"
             name="name"
             rules={[
               {
@@ -178,8 +186,32 @@ const PortfoliosPage = () => {
             <Input />
           </Form.Item>
           <Form.Item
-            label="Portfolio url"
-            name="url"
+            label="Education start"
+            name="startDate"
+            rules={[
+              {
+                required: true,
+                message: "Please fill!",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Education end"
+            name="endDate"
+            rules={[
+              {
+                required: true,
+                message: "Please fill!",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Education level"
+            name="level"
             rules={[
               {
                 required: true,
@@ -226,4 +258,4 @@ const PortfoliosPage = () => {
   );
 };
 
-export default PortfoliosPage;
+export default EducationPage;

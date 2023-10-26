@@ -6,6 +6,10 @@ import portfolioReducer, {
   portfolioService,
 } from "../services/portfolioService";
 
+import educationReducer, {
+  educationServer,
+} from "../services/educationServer";
+
 import userReducer, {
   userService,
 } from "../services/userService";
@@ -13,6 +17,7 @@ import userReducer, {
 const reducer = {
   [userService.reducerPath]: userReducer,
   [portfolioService.reducerPath]: portfolioReducer,
+  [educationServer.reducerPath]: educationReducer,
 };
 
 export const Store = configureStore({
@@ -20,7 +25,8 @@ export const Store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
       .concat(portfolioService.middleware)
-      .concat(userService.middleware),
+      .concat(userService.middleware)
+      .concat(educationServer.middleware),
 });
 
 const StoreProvider = ({ children }) => {

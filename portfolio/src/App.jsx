@@ -14,9 +14,11 @@ import SkillsPage from "./pages/admin/SkillsPage";
 
 import { AuthContext } from "./context/AuthContext";
 
-import './App.css'
 import PortfoliosPage from "./pages/admin/PortfoliosPage";
 import UsersPage from "./pages/admin/UsersPage";
+import EducationPage from "./pages/admin/EducationPage";
+
+import './App.css'
 
 function App() {
   const { isAuthenticated } = useContext(AuthContext);
@@ -34,6 +36,7 @@ function App() {
           <Route path="/" element={<AdminLayout />}>
             <Route path="dashboards" element={<DashboardPage />} />
             <Route path="portfolio" element={<PortfoliosPage />} />
+            <Route path="education" element={<EducationPage />} />
             <Route path="skills" element={<SkillsPage />} />
             <Route path="users" element={<UsersPage />} />
           </Route>
