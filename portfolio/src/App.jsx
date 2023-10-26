@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Switch } from "react-router-dom";
 import { useContext } from "react";
 
 import HomePage from "./pages/front/HomePage";
@@ -26,22 +26,24 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<FrontLayout />}>
-          <Route index element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-        </Route>
-        <Route path="*" element={<NoutFound />} />
-        {isAuthenticated ? (
-          <Route path="/" element={<AdminLayout />}>
-            <Route path="dashboards" element={<DashboardPage />} />
-            <Route path="portfolio" element={<PortfoliosPage />} />
-            <Route path="education" element={<EducationPage />} />
-            <Route path="skills" element={<SkillsPage />} />
-            <Route path="users" element={<UsersPage />} />
+      <Switch>
+        <Routes>
+          <Route path="/" element={<FrontLayout />}>
+            <Route index element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
           </Route>
-        ) : null}
-      </Routes>
+          <Route path="*" element={<NoutFound />} />
+          {isAuthenticated ? (
+            <Route path="/" element={<AdminLayout />}>
+              <Route path="dashboards" element={<DashboardPage />} />
+              <Route path="portfolio" element={<PortfoliosPage />} />
+              <Route path="education" element={<EducationPage />} />
+              <Route path="skills" element={<SkillsPage />} />
+              <Route path="users" element={<UsersPage />} />
+            </Route>
+          ) : null}
+        </Routes>
+      </Switch>
     </BrowserRouter>
   )
 }
